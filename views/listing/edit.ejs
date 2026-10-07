@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body> 
+        <form method="POST" action="/listening/<%= access._id%>?_method=PUT" > 
+     <input name="listen[title]" value="<%= access.title %>" type="text">
+        <br></br>
+        <textarea name="listen[description]" value="<%= access.description %>" type="text"></textarea>
+        <br></br>
+        <input name="listen[image]"  value="<%= access.image %>" type="text">
+        <br></br>
+        <input name="listen[price]" value="<%= access.price %>" type="number">
+        <br></br>
+         <input name="listen[Country]"  value="<%= access.Country %>" type="text">
+         <br><br>
+        <input name="listen[location]"  value="<%= access.location %>" type="text">
+        <button>Add</button>
+        </form>
+</body>
+</html>

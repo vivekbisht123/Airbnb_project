@@ -14,5 +14,9 @@
         <li><%= access.location %></li>
         <li><%= access.country %></li>
     </ul>
+    <a  href="/listing/<%=access._id %>/edit" >Edit the fields</a>
+     <form method="POST" action="/listening/<%=access._id %>?_method=DELETE">
+        <button>Delete</button>
+    </form>
 </body>
 </html>

@@ -3,8 +3,9 @@ const mongoose=require("mongoose");
 const port=3030;
 const app=express();
 const path=require("path");
+const ejsMate=require("ejs-mate");
 const listen=require("./models/listen.js");
-app.use(express.urlencoded({extended:true}));
+const methodOverride=require("method-override");
 main().then((data)=>{
     console.log("connection completed");
 })
@@ -16,11 +17,11 @@ async function main(){
 };
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
+app.use(methodOverride("_method"));
+app.engine("ejs",ejsMate);
+app.use(express.urlencoded({extended:true}));
 
-app.listen(port,()=>{
-    console.log("server is working");
-});
-app.get("/listening",async (req,res)=>{
+app.get("/listing",async (req,res)=>{
     const allList=await  listen.find({});
     res.render("listing/index.ejs",{allList});
    
@@ -39,8 +40,24 @@ app.post("/listening",async(req,res)=>{
     const newlisten=new listen(req.body.listen)
     await newlisten.save();
     console.log(newlisten);
-    res.redirect("/listening");
+    res.redirect("/listing");
 });
+app.get("/listing/:id/edit",async(req,res)=>{
+        let {id}=req.params;
+        let access=await listen.findById(id);
+        res.render("listing/edit.ejs",{access});
+})
+app.put("/listening/:id",async(req,res)=>{
+    let {id}=req.params;
+  await listen.findByIdAndUpdate(id,{ ...req.body.listen});
+   res.redirect("/listing");
+})
+app.delete("/listening/:id", async(req,res)=>{
+        let {id}=req.params;
+      let deleteitem = await listen.findByIdAndDelete(id);
+        console.log(deleteitem);
+    res.redirect("/listing");
+})
   /*app.get("/listing",async(req,res)=>{
     let samplelisting=new listing({
         title:"My New Villa",
@@ -55,3 +72,6 @@ app.post("/listening",async(req,res)=>{
 app.get("/",(req,res)=>{
     res.send("working");
 })
+app.listen(port,()=>{
+    console.log("server is working");
+});
