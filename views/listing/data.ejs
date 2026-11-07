@@ -1,16 +1,29 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <h2>List of all data:</h2>
-    <ul>
-        <li><%= access.title %></li>
-        <li><%= access.description %></li>
-        <li><%= access.price %></li>
-        <li><%= access.location %></li>
-        <li><%= access.country %></li>
-    </ul>
-    <a  href="/listing/<%=access._id %>/edit" >Edit the fields</a>
-    <br><br>
+    <div class="row">
+    <div class="col-8 offset-2">
+    <h2>Location Details</h2></div>
+    <div class="card col-6 offset-2">
+    <section class="card" style="max-width: 320px ;max-height:100px";>
+  <img src="<%= access.image.url %>" class="card-img-top" alt="image">
+  <div class="card-body">
+    <h4 class="card-title"><b><%= access.title %></b></h4>
+    <p class="card-text"><%= access.description %>
+    <br><%= access.price %>
+    <br><%= access.location %>
+     <br> <%= access.country %>
+  </p>
+    </div>
+  </div>
+</section>
+
+  <div class="btns">
+  <a href="/listing/<%=access._id %>/edit" style="text-decoration: none;" class="btn btn-dark col-1 offset-2">Edit</a>
+   
      <form method="POST" action="/listening/<%=access._id %>?_method=DELETE">
-        <button>Delete</button>
+        <button class="btn btn-dark offset-4">Delete</button>
     </form>
+  </div>
+   
+    </div>
 </body>

@@ -58,17 +58,7 @@ app.delete("/listening/:id", async(req,res)=>{
         console.log(deleteitem);
     res.redirect("/listing");
 })
-  /*app.get("/listing",async(req,res)=>{
-    let samplelisting=new listing({
-        title:"My New Villa",
-        discription:"Mountain Hills",
-        price:1200,
-        location:"panji,Goa",
-        country:"India"
-    });
-    await samplelisting.save();
-     res.send("working");
-  })*/
+ 
 app.get("/",(req,res)=>{
     res.send("working");
 })

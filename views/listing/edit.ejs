@@ -1,17 +1,52 @@
  <% layout("/layouts/boilerplate") %>
  <body>
-        <form method="POST" action="/listening/<%= access._id%>?_method=PUT" > 
-     <input name="listen[title]" value="<%= access.title %>" type="text">
-        <br></br>
-        <textarea name="listen[description]" value="<%= access.description %>" type="text"></textarea>
-        <br></br>
-        <input name="listen[image]"  value="<%= access.image %>" type="text">
-        <br></br>
-        <input name="listen[price]" value="<%= access.price %>" type="number">
-        <br></br>
-         <input name="listen[Country]"  value="<%= access.Country %>" type="text">
-         <br><br>
-        <input name="listen[location]"  value="<%= access.location %>" type="text">
-        <button>Add</button>
+   
+     <div class="row">
+     <div class="col-8 offset-2">
+      <h1>Want to edit something</h1>
+        <form method="POST" action="/listening/<%= access._id%>?_method=PUT" novalidate class="needs-validation"> 
+         
+         <div class="mb-4">
+              <label for="title" class="form-label">Title</label><br>
+               <input name="listen[title]" value="<%= access.title %>" type="text" id="title"
+                class="form-control" required>
+         </div>
+    
+        <div class="mb-3">
+          <label for="des" class="form-label">Description</label><br>
+          <textarea name="listen[description]" value="<%= access.description %>"id="des" type="text" class="form-control" required></textarea>
+        </div>
+
+          <div class="mb-4">
+          <label for="image" class="form-label">Image Link</label><br>
+            <input name="listen[image][filename]"  value="<%= access.image.filename %>" placeholder=" Enter Filename" id="filename" 
+            type="text" class="form-control" required>
+            <input name="listen[image][url]"  value="<%= access.image.url %>" id="image" placeholder=" Enter Url" type="text"
+             class="form-control" required>
+             <div class="invalid-feedback">Enter correct format</div>
+       </div>
+      
+      
+       <div class="row">
+        <div class="mb-3 col-4"> 
+         <label for="price" class="form-label">Price</label><br>
+          <input name="listen[price]" value="<%= access.price %>" type="number" id="price" class="form-control" required>
+      </div>
+         
+        <div class="mb-3 col-8">
+           <label for="country" class="form-label">Country</label><br>
+         <input name="listen[country]"  value="<%= access.country %>" type="text" id="country" class="form-control" required>
+        </div>
+      </div>
+        
+       <div class="mb-3">
+         <label for="location" class="form-label">Location</label><br>
+         <input name="listen[location]"  value="<%= access.location %>" id="location" type="text" class="form-control" required>
+       </div>
+        
+        <button class="btn btn-dark edit0btn mt-4">Edit</button>
         </form>
+        </div>
+</div>
 </body>
+

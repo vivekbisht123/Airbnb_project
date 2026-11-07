@@ -1,19 +1,54 @@
 <% layout("/layouts/boilerplate") %>
 <body>
+    <div class="row">
+        <div class="col-8 offset-2" >
     <h2>Fill the Form</h2>
-    <form method="POST" action="/listening">
-        <input name="listen[title]" placeholder="Enter title" type="text">
-        <br></br>
-        <textarea name="listen[description]" placeholder="Enter description" type="text"></textarea>
-        <br></br>
-        <input name="listen[image]" placeholder="Enter image URL/LINKS" type="text">
-        <br></br>
-        <input name="listen[price]" placeholder="Enter price" type="number">
-        <br></br>
-         <input name="listen[Country]" placeholder="Enter country name" type="text">
-         <br><br>
-        <input name="listen[location]" placeholder="Enter Location" type="text">
+    <form method="POST" action="/listening"  class="needs-validation" novalidate>
+        <div class="mb-3">
+        <label for="title" class="form-label">Title</label><br>
+        <input name="listen[title]" placeholder="Enter title" type="text" class="form-control" id="title" required>
+        <div class="invalid-feedback">Enter title</div>
+        </div>
+
+        <div class="mb-3">
+         <label for="description" class="form-label">Description</label><br>
+        <textarea name="listen[description]" placeholder="Enter description"  
+        class="form-control" type="text" id="description" required></textarea>
+        <div class="invalid-feedback">Enter Description</div>
+        </div>
+
+            <div class="mb-3">
+        <label for="image" class="form-label">Image</label><br>
+        <input name="listen[image][filename]" placeholder="Enter filename"  class="form-control" type="text" id="image">
+        <input name="listen[image][url]" placeholder="Enter image URL/LINKS"  class="form-control" type="text" id="image"><
+        </div>
+
+        <div class="row">
+         <div class="mb-3 col-4">
+         <label for="Price" class="form-label">Price</label><br>
+        <input name="listen[price]" placeholder="Enter price"
+          class="form-control" type="number" id="Price" required>
+          <div class="invalid-feedback">Enter price</div>
+        </div>
+          
         
-        <button>Add</button>
+         <div class="mb-3 col-8">
+         <label for="country" class="form-label">Country</label><br>
+         <input name="listen[Country]" placeholder="Enter country name"  class="form-control" type="text"
+          id="country" required>
+          <div class="invalid-feedback">Enter country name</div>
+         </div></div>
+
+         <div class="mb-3">
+        <label for="location" class="form-label">Location</label><br>
+        <input name="listen[location]" placeholder="Enter Location"  
+        class="form-control" type="text" id="location" required>
+        <div class="invalid-feedback">Enter location</div>
+        </div>
+         </div>
+         
+        <button class="btn btn-dark">Add</button>
     </form>
+    </div>
+    </div>
 </body>
